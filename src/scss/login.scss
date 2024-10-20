@@ -1,0 +1,16 @@
+// Required
+@import "../../node_modules/@coreui/coreui/scss/functions";
+
+// Default variable overrides
+$body-bg: #f8f9fa !default; // Cambia a tu color deseado
+$body-color: #000 !default; // Cambia el color del texto si es necesario
+
+// Required
+@import "../../node_modules/@coreui/coreui/scss/variables";
+@import "../../node_modules/@coreui/coreui/scss/maps";
+@import "../../node_modules/@coreui/coreui/scss/mixins";
+@import "../../node_modules/@coreui/coreui/scss/root";
+
+// Optional CoreUI components here
+@import "../../node_modules/@coreui/coreui/scss/reboot";
+@import "../../node_modules/@coreui/coreui/scss/type";
