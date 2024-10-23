@@ -27,6 +27,27 @@ const _nav = [
     },
   },
   {
+    // De aquí para abajo es el menú que se ve añadiendo
+    component: CNavGroup,
+    name: 'Paciente',
+    to: '/patient',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Agregar',
+        to: '/patient/add',
+      },
+      {
+        component: CNavItem,
+        name: 'Lista',
+        to: '',
+      },     
+    ],
+  },
+
+  // De aquí para abajo, es la plantilla original
+  {
     component: CNavTitle,
     name: 'Theme',
   },
@@ -129,29 +150,29 @@ const _nav = [
       },
     ],
   },
-  {
-    component: CNavGroup,
-    name: 'Buttons',
-    to: '/buttons',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Buttons',
-        to: '/buttons/buttons',
-      },
-      {
-        component: CNavItem,
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Dropdowns',
-        to: '/buttons/dropdowns',
-      },
-    ],
-  },
+  // {
+  //   component: CNavGroup,
+  //   name: 'Buttons',
+  //   to: '/buttons',
+  //   icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+  //   items: [
+  //     {
+  //       component: CNavItem,
+  //       name: 'Buttons',
+  //       to: '/buttons/buttons',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Buttons groups',
+  //       to: '/buttons/button-groups',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Dropdowns',
+  //       to: '/buttons/dropdowns',
+  //     },
+  //   ],
+  // },
   {
     component: CNavGroup,
     name: 'Forms',
@@ -305,6 +326,7 @@ const _nav = [
     href: 'https://coreui.io/react/docs/templates/installation/',
     icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   },
+  
 ]
 
 export default _nav
