@@ -39,17 +39,17 @@ const Register = () => {
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm onSubmit={handleRegister}> {/* Agrega onSubmit al formulario */}
-                  <h1>Registro</h1>
-                  <p className="text-body-secondary">Crea tu cuenta</p>
+                  <h1>Sign-up</h1>
+                  <p className="text-body-secondary">Create your account</p>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput type="number" placeholder="Cédula" autoComplete="username" required />
+                    <CFormInput type="number" placeholder="ID" autoComplete="username" required />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
-                    <CFormInput type="email" placeholder="Correo electrónico" autoComplete="email" required />
+                    <CFormInput type="email" placeholder="email" autoComplete="email" required />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -57,7 +57,7 @@ const Register = () => {
                     </CInputGroupText>
                     <CFormInput
                       type="password"
-                      placeholder="Contraseña"
+                      placeholder="password"
                       autoComplete="new-password"
                       required
                     />
@@ -68,13 +68,13 @@ const Register = () => {
                     </CInputGroupText>
                     <CFormInput
                       type="password"
-                      placeholder="Repita contraseña"
+                      placeholder="repeat password"
                       autoComplete="new-password"
                       required
                     />
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton color="success" type="submit">Crear una cuenta</CButton> {}
+                    <CButton color="success" type="submit">create an account</CButton> {}
                   </div>
                 </CForm>
               </CCardBody>

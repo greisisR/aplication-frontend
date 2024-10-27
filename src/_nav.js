@@ -21,30 +21,199 @@ const _nav = [
     name: 'Dashboard',
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+    
   },
+
   {
     // De aquí para abajo es el menú que se ve añadiendo
+
+    //Personal
     component: CNavGroup,
-    name: 'Paciente',
+    name: 'Staff',
+    to: '/Staff',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add', //agregar
+        to: '/staff/add',
+      },
+      {
+        component: CNavItem,
+        name: 'List', //lista
+        to: '/staff/list',
+      },   
+        
+    ],
+  },
+
+  {
+    // De aquí para abajo es el menú que se ve añadiendo
+
+    //patient
+    component: CNavGroup,
+    name: 'Patient',
     to: '/patient',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Agregar',
+        name: 'Add', //agrgar
         to: '/patient/add',
       },
       {
         component: CNavItem,
-        name: 'Lista',
-        to: '',
-      },     
+        name: 'List', //lista
+        to: '/patient/list',
+      },   
+        
     ],
   },
+
+  //citas
+  {
+    component: CNavGroup,
+    name: 'Appointment', 
+    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add', // agragar
+        to: '/appointment/add',
+       
+      },
+      {
+        component: CNavItem,
+        name: 'Weekly list', //lista semanal
+        to: '/appointment/weekly list',
+      },
+      {
+        component: CNavItem,
+        name: 'Monthly list', //lista mensual
+        to: '/appointment/monthly list',
+      },
+      {
+        component: CNavItem,
+        name: 'Total list', //lista total
+        to: '/appointmente/total list',
+      },
+     
+      
+    ],
+  },
+
+  {
+    // De aquí para abajo es el menú que se ve añadiendo
+
+    //consultorio
+    component: CNavGroup,
+    name: 'Office',
+    to: '/office',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add',
+        to: '/office/add',
+      },
+      {
+        component: CNavItem,
+        name: 'List',
+        to: '/office/list',
+      },   
+        
+    ],
+  },
+  
+  {
+    // De aquí para abajo es el menú que se ve añadiendo
+
+    //tratamiento 
+    component: CNavGroup,
+    name: 'Treatment', //tratamientos 
+    to: '/treatment',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add',
+        to: '/treatment/add',
+      },
+      {
+        component: CNavItem,
+        name: 'List',
+        to: '/treatment/list',
+      },   
+        
+    ],
+  },
+
+  {
+    // De aquí para abajo es el menú que se ve añadiendo
+
+    //gestión de usuario
+    component: CNavGroup,
+    name: 'User management', //gestión de usuario 
+    to: '/user management',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Add',
+        to: '/user management/add',
+      },
+      {
+        component: CNavItem,
+        name: 'List',
+        to: '/user managemente/list',
+      },   
+    ],
+  },
+
+  {
+    // De aquí para abajo es el menú que se ve añadiendo
+
+    //estadisticas 
+    component: CNavGroup,
+    name: 'Statistics', //gestión de usuario 
+    to: '/statistics',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Staff',
+        to: '/statistics/Staff Statistics',
+      },
+
+      {
+        component: CNavItem,
+        name: 'Patient',
+        to: '/statistics/Patient Statistics',
+      },  
+
+      {
+        component: CNavItem,
+        name: 'Appointment',
+        to: '/statistics/Appointment Statistics',
+      },  
+      {
+        component: CNavItem,
+        name: 'Office',
+        to: '/statistics/Office Statistics',
+      }, 
+      {
+        component: CNavItem,
+        name: 'Treatment',
+        to: '/statistics/Treatment Statistics',
+      },
+      {
+        component: CNavItem,
+        name: 'User management',
+        to: '/statistics/User Management Statistics',
+      },
+    ],
+  },
+  
 
   // De aquí para abajo, es la plantilla original
   {

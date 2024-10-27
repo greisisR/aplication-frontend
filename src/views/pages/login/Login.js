@@ -27,13 +27,13 @@ const Login = () => {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                    <h1>Iniciar sesión</h1>
-                    <p className="text-body-secondary">Inicia sesión en tu cuenta</p>
+                    <h1>Log in</h1>
+                    <p className="text-body-secondary">Log in to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Cédula" autoComplete="username" />
+                      <CFormInput placeholder="ID" autoComplete="username" />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -41,14 +41,14 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
-                        placeholder="Contraseña"
+                        placeholder="password"
                         autoComplete="current-password"
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={8}>
                         <CButton color="primary" className="px-4">
-                          Ingresar
+                        Enter
                         </CButton>
                       </CCol>
                       
@@ -59,13 +59,13 @@ const Login = () => {
               <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody >
                   <div>
-                    <h2 className="text-center">Registrate</h2>
+                    <h2 className="text-center">Sign up</h2>
                     <p  className='text-justify'>
-                    Crea una cuenta para acceder a todas nuestras funciones y mantenerte al día con nuestras últimas actualizaciones. Disfruta de una experiencia personalizada y gestiona tus preferencias fácilmente.
+                    Create an account to access all our features and stay up-to-date with our latest updates. Enjoy a personalized experience and easily manage your preferences.
                     </p>
                     <Link to="/register">
                       <CButton color="primary" className="mt-8" active tabIndex={-1}>
-                        Registrarme ahora
+                      Sign up now
                       </CButton>
                     </Link>
                   </div>
