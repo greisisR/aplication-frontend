@@ -5,8 +5,41 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
+//staff
+const AddStaff = React.lazy(() => import('./views/staff/add/add'))
+const ListStaff = React.lazy(() => import('./views/staff/list/list'))
+
 //patient
 const AddPatient = React.lazy(() => import('./views/patient/add/add'))
+const ListPatient = React.lazy(() => import('./views/patient/list/list'))
+
+//Appointment
+const AddAppointment = React.lazy(() => import('./views/appointment/add/add'))
+const WeeklyList = React.lazy(() => import('./views/appointment/weekly list/weekly list'))
+const MonthlyList = React.lazy(() => import('./views/appointment/monthly list/monthly list'))
+const TotalList = React.lazy(() => import('./views/appointment/total list/total list'))
+
+//Office
+const AddOffice = React.lazy(() => import('./views/office/add/add'))
+const ListOffice = React.lazy(() => import('./views/office/list/list'))
+
+//treatment
+const AddTreatment = React.lazy(() => import('./views/treatment/add/add'))
+const ListTreatment = React.lazy(() => import('./views/treatment/list/list'))
+
+//User management
+const AddUsermang = React.lazy(() => import('./views/user management/add/add'))
+const ListUsermang = React.lazy(() => import('./views/user management/list/list'))
+
+//Statistics
+const StatisticsStaff = React.lazy(() => import('./views/statistics/Staff Statistics/Staff Statistics'))
+const StatisticsPatient = React.lazy(() => import('./views/statistics/Patient Statistics/Patient Statistics'))
+const StatisticsOffice = React.lazy(() => import('./views/statistics/Office Statistics/Office Statistics'))
+const StatisticsAppointment= React.lazy(() => import('./views/statistics/Appointment Statistics/Appointment Statistics'))
+const StatisticsTrearment = React.lazy(() => import('./views/statistics/Treatment Statistics/Treatment Statistics'))
+
+
+
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -57,9 +90,46 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/dashboard', name: 'Dashboard', element: Dashboard},
 
-  { path: '/patient/add', name: "add/patient", element: AddPatient},
+  //Staff
+  { path: '/staff/add', name: "staff / Add", element: AddStaff},
+  { path: '/staff/list', name: "staff / List", element: ListStaff},
+
+  //patient
+  { path: '/patient/add', name: "Patient / Add ", element: AddPatient},
+  { path: '/patient/list', name: "Patient / List", element: ListPatient},
+
+  //appointment 
+  
+  { path: '/appointment/add', name: "Appointment / Add", element: AddAppointment},
+  { path: '/appointment/weekly list', name: "Appointment / Weekly List", element: WeeklyList},
+  { path: '/appointment/monthly list', name: "Appointment/ Monthly List", element: MonthlyList},
+  { path: '/appointment/total list', name: "Appointment/ Total List", element: TotalList},
+
+  //office 
+  { path: '/office/add', name: "Office / Add", element: AddOffice},
+  { path: '/office/list', name: "Office / List", element: ListOffice},
+
+  //treatment
+  { path: '/treatment/add', name: "Treatment / Add", element: AddTreatment},
+  { path: '/treatment/list', name: "Treatment / List", element: ListTreatment},
+
+
+
+//User management
+  { path: '/user management/add', name: "User management/ Add ", element: AddUsermang},
+  { path: '/user management/list', name: "User management / List ", element: ListUsermang},  
+
+//Statistics
+  { path: '/statistics/Staff Statistics', name: "Statistics / Staff Statistics", element: StatisticsStaff},
+  { path: '/statistics/Patient Statistics', name: "Statistics / Patient Statistics", element: StatisticsPatient},
+  { path: '/statistics/Office Statistics', name: "Statistics / Office Statistics ", element: StatisticsOffice},
+  { path: '/statistics/Appointment Statistics', name: "Statistics / Appointment Statistics", element: StatisticsAppointment},
+  { path: '/statistics/Treatment Statistics', name: "Statistics / Treatment Statistics ", element: StatisticsTrearment},
+
+  
+
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

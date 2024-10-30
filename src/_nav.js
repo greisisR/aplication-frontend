@@ -95,7 +95,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Total list', //lista total
-        to: '/appointmente/total list',
+        to: '/appointment/total list',
       },
      
       
@@ -165,7 +165,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'List',
-        to: '/user managemente/list',
+        to: '/user management/list',
       },   
     ],
   },
@@ -206,11 +206,7 @@ const _nav = [
         name: 'Treatment',
         to: '/statistics/Treatment Statistics',
       },
-      {
-        component: CNavItem,
-        name: 'User management',
-        to: '/statistics/User Management Statistics',
-      },
+      
     ],
   },
   
