@@ -31,7 +31,7 @@ const AddTreatment = () => {
                   Description
                   </CFormLabel>
                   <div className="col-sm-10">
-                    <CFormTextarea id="idCard" placeholder="Treatment description " />
+                    <CFormTextarea id="idCard" placeholder="Enter the treatment description " />
                   </div>
                 </CRow>
 
@@ -41,7 +41,7 @@ const AddTreatment = () => {
                   Observation
                   </CFormLabel>
                   <div className="col-sm-10">
-                    <CFormInput type="tex" id="idCard" placeholder="Observation" />
+                    <CFormInput type="tex" id="idCard" placeholder="Enter the observation" />
                   </div>
                 </CRow>
 
@@ -69,10 +69,15 @@ const AddTreatment = () => {
                 {/* ID Patient */}
                 <CRow className="mb-3">
                   <CFormLabel htmlFor="ID Patient" className="col-sm-2 col-form-label">
-                    ID Patient
+                    Patient
                   </CFormLabel>
-                  <div className="col-sm-10">
-                    <CFormSelect type="select" id=" ID Patient" placeholder= "Enter ID card number" />
+                  <div className="col-sm-10">                    
+                    <CFormSelect id="patient">
+                      <option value="">Select a patient</option>
+                      <option value="">30163455 Greisis Rámirez</option>
+                      <option value="">16409178 Carlos Enrique</option>
+                      <option value="">26102003 María Rojas</option>
+                    </CFormSelect>
                   </div>
                 </CRow>
 

@@ -25,23 +25,19 @@ const AddAppointment= () => {
           <CCardBody>
             <DocsExample href="forms/form-control">
               <CForm>
-                {/* ID Card Staff */}
-                <CRow className="mb-3">
-                  <CFormLabel htmlFor="idCard" className="col-sm-2 col-form-label">
-                    Staff ID Number
-                  </CFormLabel>
-                  <div className="col-sm-10">
-                    <CFormInput type="number" id="idCard" placeholder="Enter ID card number" />
-                  </div>
-                </CRow>
+               
 
                 {/* ID Card Patient */}
                  <CRow className="mb-3">
                   <CFormLabel htmlFor="idCard" className="col-sm-2 col-form-label">
-                     Patient ID Number
+                     Patient
                   </CFormLabel>
-                  <div className="col-sm-10">
-                    <CFormInput type="number" id="idCard" placeholder="Enter ID card number" />
+                  <div className="col-sm-10">                    
+                    <CFormSelect type="select" id="Office name">
+                      <option value="">Select the patient</option>
+                      <option value="30609563">(30609563) Luis Aron Rojas</option>
+                      
+                    </CFormSelect>
                   </div>
                 </CRow>
 
@@ -51,8 +47,13 @@ const AddAppointment= () => {
                   <CFormLabel htmlFor="Office name" className="col-sm-2 col-form-label">
                     Office name
                   </CFormLabel>
-                  <div className="col-sm-10">
-                    <CFormSelect type="select" id="Office name" placeholder="Enter office name" />
+                  <div className="col-sm-10">                    
+                    <CFormSelect type="select" id="Office name">
+                      <option value="">Select office name</option>
+                      <option value="">Office 1</option>
+                      <option value="">Office 2</option>
+                      <option value="">Office 3</option>
+                    </CFormSelect>
                   </div>
                 </CRow>
 

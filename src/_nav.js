@@ -84,18 +84,14 @@ const _nav = [
       },
       {
         component: CNavItem,
-        name: 'Weekly list', //lista semanal
-        to: '/appointment/weekly list',
+        name: 'List', //lista total
+        to: '/appointment/list',
       },
       {
         component: CNavItem,
-        name: 'Monthly list', //lista mensual
-        to: '/appointment/monthly list',
-      },
-      {
-        component: CNavItem,
-        name: 'Total list', //lista total
-        to: '/appointment/total list',
+        name: 'Assign Treatment', // Asignar Tratamiento
+        to: '/appointment/assigntreatment',
+       
       },
      
       
@@ -110,12 +106,7 @@ const _nav = [
     name: 'Office',
     to: '/office',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Add',
-        to: '/office/add',
-      },
+    items: [    
       {
         component: CNavItem,
         name: 'List',
@@ -125,28 +116,7 @@ const _nav = [
     ],
   },
   
-  {
-    // De aquí para abajo es el menú que se ve añadiendo
 
-    //tratamiento 
-    component: CNavGroup,
-    name: 'Treatment', //tratamientos 
-    to: '/treatment',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Add',
-        to: '/treatment/add',
-      },
-      {
-        component: CNavItem,
-        name: 'List',
-        to: '/treatment/list',
-      },   
-        
-    ],
-  },
 
   {
     // De aquí para abajo es el menú que se ve añadiendo

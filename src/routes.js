@@ -1,6 +1,7 @@
 import { element } from 'prop-types'
 import React from 'react'
 
+
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -15,12 +16,13 @@ const ListPatient = React.lazy(() => import('./views/patient/list/list'))
 
 //Appointment
 const AddAppointment = React.lazy(() => import('./views/appointment/add/add'))
-const WeeklyList = React.lazy(() => import('./views/appointment/weekly list/weekly list'))
-const MonthlyList = React.lazy(() => import('./views/appointment/monthly list/monthly list'))
-const TotalList = React.lazy(() => import('./views/appointment/total list/total list'))
+const TotalList = React.lazy(() => import('./views/appointment/list/list'))
+const Assign = React.lazy(() => import('./views/appointment/assigntreatment/assigntreatment'))
+
+
+
 
 //Office
-const AddOffice = React.lazy(() => import('./views/office/add/add'))
 const ListOffice = React.lazy(() => import('./views/office/list/list'))
 
 //treatment
@@ -103,12 +105,11 @@ const routes = [
   //appointment 
   
   { path: '/appointment/add', name: "Appointment / Add", element: AddAppointment},
-  { path: '/appointment/weekly list', name: "Appointment / Weekly List", element: WeeklyList},
-  { path: '/appointment/monthly list', name: "Appointment/ Monthly List", element: MonthlyList},
-  { path: '/appointment/total list', name: "Appointment/ Total List", element: TotalList},
+  { path: '/appointment/list', name: "Appointment / List", element: TotalList},
+  { path: '/appointment/assigntreatment', name: "Appointment / Assigntreatment", element: Assign},
 
   //office 
-  { path: '/office/add', name: "Office / Add", element: AddOffice},
+  
   { path: '/office/list', name: "Office / List", element: ListOffice},
 
   //treatment

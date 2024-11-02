@@ -1,248 +1,128 @@
-import React from 'react'
+import React, { useState } from 'react';
 import {
   CButton,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CForm,
   CFormInput,
-  CFormLabel,
-  CFormTextarea,
   CRow,
-} from '@coreui/react'
-import { DocsExample } from 'src/components'
+  CTable,
+  CTableBody,
+  CTableDataCell,
+  CTableHead,
+  CTableHeaderCell,
+  CTableRow,
+} from '@coreui/react';
 
-const AddPatient = () => {
+const PatientList = () => {
+  const initialPatientData = [
+    { id: 1, firstName: 'Luis', lastName: 'Martínez', gender: 'M', address: 'Calle 123' },
+    { id: 2, firstName: 'María', lastName: 'González', gender: 'F', address: 'Avenida Siempre Viva' },
+    { id: 3, firstName: 'José', lastName: 'Rodríguez', gender: 'M', address: 'Calle Los Almendros' },
+    { id: 4, firstName: 'Ana', lastName: 'Pérez', gender: 'F', address: 'Boulevard El Sol' },
+    { id: 5, firstName: 'Carlos', lastName: 'Hernández', gender: 'M', address: 'Calle Luna' },
+  ];
+
+  const [patientData, setPatientData] = useState(initialPatientData);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  const filteredData = patientData.filter((patient) =>
+    `${patient.firstName} ${patient.lastName} ${patient.address} ${patient.gender}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const handleDelete = (id) => {
+    setPatientData(patientData.filter((patient) => patient.id !== id));
+  };
+
   return (
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>React Form Control</strong>
+            <strong>Patient List</strong>
           </CCardHeader>
           <CCardBody>
-            <DocsExample href="forms/form-control">
-              <CForm>
-                <div className="mb-3">
-                  <CFormLabel htmlFor="exampleFormControlInput1">Email address</CFormLabel>
-                  <CFormInput
-                    type="email"
-                    id="exampleFormControlInput1"
-                    placeholder="name@example.com"
-                  />
-                </div>
-                <div className="mb-3">
-                  <CFormLabel htmlFor="exampleFormControlTextarea1">Example textarea</CFormLabel>
-                  <CFormTextarea id="exampleFormControlTextarea1" rows={3}></CFormTextarea>
-                </div>
-              </CForm>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Sizing</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-body-secondary small">
-              Set heights using <code>size</code> property like <code>size=&#34;lg&#34;</code> and{' '}
-              <code>size=&#34;sm&#34;</code>.
-            </p>
-            <DocsExample href="forms/form-control#sizing">
-              <CFormInput
-                type="text"
-                size="lg"
-                placeholder="Large input"
-                aria-label="lg input example"
-              />
-              <br />
-              <CFormInput
-                type="text"
-                placeholder="Default input"
-                aria-label="default input example"
-              />
-              <br />
-              <CFormInput
-                type="text"
-                size="sm"
-                placeholder="Small input"
-                aria-label="sm input example"
-              />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Disabled</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-body-secondary small">
-              Add the <code>disabled</code> boolean attribute on an input to give it a grayed out
-              appearance and remove pointer events.
-            </p>
-            <DocsExample href="forms/form-control#disabled">
-              <CFormInput
-                type="text"
-                placeholder="Disabled input"
-                aria-label="Disabled input example"
-                disabled
-              />
-              <br />
-              <CFormInput
-                type="text"
-                placeholder="Disabled readonly input"
-                aria-label="Disabled input example"
-                disabled
-                readOnly
-              />
-              <br />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Readonly</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-body-secondary small">
-              Add the <code>readOnly</code> boolean attribute on an input to prevent modification of
-              the input&#39;s value. Read-only inputs appear lighter (just like disabled inputs),
-              but retain the standard cursor.
-            </p>
-            <DocsExample href="forms/form-control#readonly">
-              <CFormInput
-                type="text"
-                placeholder="Readonly input here..."
-                aria-label="readonly input example"
-                readOnly
-              />
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Readonly plain text</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-body-secondary small">
-              If you want to have <code>&lt;input readonly&gt;</code> elements in your form styled
-              as plain text, use the <code>plainText</code> boolean property to remove the default
-              form field styling and preserve the correct margin and padding.
-            </p>
-            <DocsExample href="components/accordion">
-              <CRow className="mb-3">
-                <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">
-                  Email
-                </CFormLabel>
-                <div className="col-sm-10">
-                  <CFormInput
-                    type="text"
-                    id="staticEmail"
-                    defaultValue="email@example.com"
-                    readOnly
-                    plainText
-                  />
-                </div>
-              </CRow>
-              <CRow className="mb-3">
-                <CFormLabel htmlFor="inputPassword" className="col-sm-2 col-form-label">
-                  Password
-                </CFormLabel>
-                <div className="col-sm-10">
-                  <CFormInput type="password" id="inputPassword" />
-                </div>
-              </CRow>
-            </DocsExample>
-            <DocsExample href="components/accordion">
-              <CForm className="row g-3">
-                <div className="col-auto">
-                  <CFormLabel htmlFor="staticEmail2" className="visually-hidden">
-                    Email
-                  </CFormLabel>
-                  <CFormInput
-                    type="text"
-                    id="staticEmail2"
-                    defaultValue="email@example.com"
-                    readOnly
-                    plainText
-                  />
-                </div>
-                <div className="col-auto">
-                  <CFormLabel htmlFor="inputPassword2" className="visually-hidden">
-                    Password
-                  </CFormLabel>
-                  <CFormInput type="password" id="inputPassword2" placeholder="Password" />
-                </div>
-                <div className="col-auto">
-                  <CButton color="primary" type="submit" className="mb-3">
-                    Confirm identity
-                  </CButton>
-                </div>
-              </CForm>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>File input</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="forms/form-control#file-input">
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFile">Default file input example</CFormLabel>
-                <CFormInput type="file" id="formFile" />
-              </div>
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFileMultiple">Multiple files input example</CFormLabel>
-                <CFormInput type="file" id="formFileMultiple" multiple />
-              </div>
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFileDisabled">Disabled file input example</CFormLabel>
-                <CFormInput type="file" id="formFileDisabled" disabled />
-              </div>
-              <div className="mb-3">
-                <CFormLabel htmlFor="formFileSm">Small file input example</CFormLabel>
-                <CFormInput type="file" size="sm" id="formFileSm" />
-              </div>
+            <CFormInput
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="mb-3"
+            />
+            <CTable striped responsive>
+              <CTableHead>
+                <CTableRow>
+                  <CTableHeaderCell>ID</CTableHeaderCell>
+                  <CTableHeaderCell>First Name</CTableHeaderCell>
+                  <CTableHeaderCell>Last Name</CTableHeaderCell>
+                  <CTableHeaderCell>Address</CTableHeaderCell>
+                  <CTableHeaderCell>Gender</CTableHeaderCell>
+                  <CTableHeaderCell>Actions</CTableHeaderCell>
+                </CTableRow>
+              </CTableHead>
+              <CTableBody>
+                {currentData.length > 0 ? (
+                  currentData.map((patient) => (
+                    <CTableRow key={patient.id}>
+                      <CTableDataCell>{patient.id}</CTableDataCell>
+                      <CTableDataCell>{patient.firstName}</CTableDataCell>
+                      <CTableDataCell>{patient.lastName}</CTableDataCell>
+                      <CTableDataCell>{patient.address}</CTableDataCell>
+                      <CTableDataCell>{patient.gender}</CTableDataCell>
+                      <CTableDataCell>
+                        <CButton color="warning" size="sm" className="me-2">Update</CButton>
+                        <CButton color="info" size="sm" className="me-2">View More</CButton>
+                        <CButton color="danger" size="sm" onClick={() => handleDelete(patient.id)}>
+                          Delete
+                        </CButton>
+                      </CTableDataCell>
+                    </CTableRow>
+                  ))
+                ) : (
+                  <CTableRow>
+                    <CTableDataCell colSpan="6" className="text-center">
+                      No results found
+                    </CTableDataCell>
+                  </CTableRow>
+                )}
+              </CTableBody>
+            </CTable>
+
+            <div className="d-flex justify-content-between align-items-center mt-3">
+              <span>Page {currentPage} of {totalPages}</span>
               <div>
-                <CFormLabel htmlFor="formFileLg">Large file input example</CFormLabel>
-                <CFormInput type="file" size="lg" id="formFileLg" />
+                <CButton
+                  color="primary"
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage((prev) => prev - 1)}
+                  className="me-2"
+                >
+                  Previous
+                </CButton>
+                <CButton
+                  color="primary"
+                  disabled={currentPage === totalPages}
+                  onClick={() => setCurrentPage((prev) => prev + 1)}
+                >
+                  Next
+                </CButton>
               </div>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Form Control</strong> <small>Color</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="forms/form-control#color">
-              <CFormLabel htmlFor="exampleColorInput">Color picker</CFormLabel>
-              <CFormInput
-                type="color"
-                id="exampleColorInput"
-                defaultValue="#563d7c"
-                title="Choose your color"
-              />
-            </DocsExample>
+            </div>
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default AddPatient
+export default PatientList;

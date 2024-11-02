@@ -41,7 +41,13 @@ const AddPatient = () => {
                    User Type
                   </CFormLabel>
                   <div className="col-sm-10">
-                    <CFormSelect id="select" placeholder="User Type " />
+                
+                    <CFormSelect id="UserType">
+                      <option value="">Select a User Type </option>
+                      <option value="0">Administrator</option>
+                      <option value="1">Doctor</option>
+                      <option value="2">Patient</option>
+                    </CFormSelect>
                   </div>
                 </CRow>
 

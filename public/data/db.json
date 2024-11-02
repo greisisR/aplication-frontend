@@ -1,0 +1,115 @@
+{
+  "office": [
+    { "office_id": 1, "name": "Consultorio 1" },
+    { "office_id": 2, "name": "Consultorio 2" }
+  ],
+  "staff": [
+    { "staff_id": 30609563, "specialty_id": 1, "user_id": 30609563},
+    { "staff_id": 30609564, "specialty_id": 2, "user_id": 30609564}    
+  ],
+  "appointment": [
+    { "appointment_id": 1, "date": "2024-10-01", "staff_id": 30609563, "office_id": 1, "patient_id": 1589042 },
+    { "appointment_id": 2, "date": "2024-10-03", "staff_id": 30609563, "office_id": 2, "patient_id": 1589042 }
+  ],
+  "level": [
+    { "level_id": 0, "type": "ADMIN" },
+    { "level_id": 1, "type": "DOCTOR" },
+    { "level_id": 2, "type": "PATIENT" }
+  ],
+  "municipality": [ 
+    { "municipality_id": 1, "name": "Municipio San cristóbal" },
+    { "municipality_id": 2, "name": "Municipio Lobatera" }
+  ],
+  "specialty": [
+    { "specialty_id": 1, "name": "Pediatría" },
+    { "specialty_id": 2, "name": "Ginecología" }
+  ],
+  "patient": [
+    { "patient_id": 1589042, "user_id": 1589042}
+   
+  ],
+  "parish": [
+    { "parish_id": 1, "name": "San Juan Bautista", "municipality_id": 1 },
+    { "parish_id": 2, "name": "La molina", "municipality_id": 2 }
+  ],
+  "user": [
+    { 
+      "user_id": 30609563,
+      "password": "password123",
+      "firstname": "Juan",
+      "middlename": "Carlos",
+      "surname": "Pérez",
+      "secondsurname": "Gómez",
+      "date_birth": "1990-01-01",
+      "address": "Calle 123",
+      "phone": "0412-1234567",
+      "email": "juan.perez@example.com",
+      "gender": 1,
+      "level_id": 0,
+      "status_id": 1,
+      "parish_id": 1 
+    },
+    { 
+      "user_id": 30609564,
+      "password": "password123",
+      "firstname": "Luis",
+      "middlename": "Andres",
+      "surname": "Torres",
+      "secondsurname": "Rodriguez",
+      "date_birth": "1990-01-01",
+      "address": "Calle 123",
+      "phone": "0412-1234567",
+      "email": "juan.perez@example.com",
+      "gender": 1,
+      "level_id": 0,
+      "status_id": 1,
+      "parish_id": 1 
+    },
+    { 
+      "user_id": 1589042,
+      "password": "password123",
+      "firstname": "Greisis",
+      "middlename": "Juslenis",
+      "surname": "Rámirez",
+      "secondsurname": "Rueda",
+      "date_birth": "2003-10-01",
+      "address": "Calle 123",
+      "phone": "0412-1234567",
+      "email": "gjuslenis@example.com",
+      "gender": 0,
+      "level_id": 2,
+      "status_id": 2,
+      "parish_id": 2
+    }
+  ],
+  "treatment": [
+    {
+      "treatment_id": 1,
+      "description": "Consulta general",
+      "observation": "Paciente en buen estado",
+      "start_date": "2024-11-01",
+      "end_date": "2024-11-01",
+      "patient_id":  1589042,
+      "staff_id": 30609563
+    }
+  ],
+  "action": [
+    { "action_id": 0, "type": "CREATE" },
+    { "action_id": 1, "type": "UPDATE" },
+    { "action_id": 2, "type": "DELETE" }
+    
+  ],
+  "history_action": [
+    {
+      "history_id": 1,
+      "date_time": "2024-10-01T09:00:00",
+      "action_id": 0,
+      "patient_id": 1589042,
+      "staff_id": 30609563
+    }
+  ],
+  "status": [
+    { "status_id": 1, "create_at": "2024-08-01T00:00:00", "update_at": "NULL" },
+    { "status_id": 2, "create_at": "2024-09-01T00:00:00", "update_at": "NULL" }
+  ]
+}
