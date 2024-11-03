@@ -35,7 +35,7 @@ const AddAppointment= () => {
                   <div className="col-sm-10">                    
                     <CFormSelect type="select" id="Office name">
                       <option value="">Select the patient</option>
-                      <option value="30609563">(30609563) Luis Aron Rojas</option>
+                      <option value="30201598">(30201598) Greisis Juslenis Ramirez Rueda</option>
                       
                     </CFormSelect>
                   </div>
