@@ -77,7 +77,7 @@ const Assigntreatment= () => {
         : dateFilter === 'month'
         ? isThisMonth(new Date(appointment.appointmentDate + 'T00:00:00'))
         : dateFilter === 'day'
-        ? appointmentDateFormatted === todayDate // Compara directamente con la fecha de hoy
+        ? appointmentDateFormatted === todayDate 
         : true;
 
     return matchesSearchTerm && matchesDateFilter;
@@ -135,15 +135,11 @@ const Assigntreatment= () => {
                       <CTableDataCell>{appointment.patientName}</CTableDataCell>
                       <CTableDataCell>{format(new Date(appointment.appointmentDate + 'T00:00:00'), 'yyyy-MM-dd')}</CTableDataCell>
                       <CTableDataCell>
-                        <CButton color="warning" size="sm" className="me-2">
-                          Update
-                        </CButton>
+                        
                         <CButton color="info" size="sm" className="me-2">
                           Assign Treatment
                         </CButton>
-                        <CButton color="danger" size="sm">
-                          Delete
-                        </CButton>
+                        
                       </CTableDataCell>
                     </CTableRow>
                   ))

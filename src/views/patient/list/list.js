@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CButton,
   CCard,
@@ -16,33 +16,37 @@ import {
 } from '@coreui/react';
 
 const PatientList = () => {
-  const initialPatientData = [
-    { id: 1, firstName: 'Luis', lastName: 'Martínez', gender: 'M', address: 'Calle 123' },
-    { id: 2, firstName: 'María', lastName: 'González', gender: 'F', address: 'Avenida Siempre Viva' },
-    { id: 3, firstName: 'José', lastName: 'Rodríguez', gender: 'M', address: 'Calle Los Almendros' },
-    { id: 4, firstName: 'Ana', lastName: 'Pérez', gender: 'F', address: 'Boulevard El Sol' },
-    { id: 5, firstName: 'Carlos', lastName: 'Hernández', gender: 'M', address: 'Calle Luna' },
-  ];
-
-  const [patientData, setPatientData] = useState(initialPatientData);
+  const [patientData, setPatientData] = useState([]);
+  const [usersData, setUsersData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
 
-  const filteredData = patientData.filter((patient) =>
-    `${patient.firstName} ${patient.lastName} ${patient.address} ${patient.gender}`
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/data/db.json');
+      const data = await response.json();
+      setUsersData(data.user);
+      setPatientData(data.patient);
+    };
+
+    fetchData();
+  }, []);
+
+  const combinedData = patientData.map((patient) => {
+    const user = usersData.find((user) => user.user_id === patient.user_id);
+    return user
+      ? {
+          ...user,
+          patient_id: patient.patient_id,
+          gender: user.gender === 1 ? 'M' : 'F', 
+        }
+      : null;
+  }).filter(item => item !== null);
+
+  const filteredData = combinedData.filter(patient =>
+    `${patient.firstname} ${patient.surname} ${patient.address}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const handleDelete = (id) => {
-    setPatientData(patientData.filter((patient) => patient.id !== id));
-  };
 
   return (
     <CRow>
@@ -65,26 +69,24 @@ const PatientList = () => {
                   <CTableHeaderCell>ID</CTableHeaderCell>
                   <CTableHeaderCell>First Name</CTableHeaderCell>
                   <CTableHeaderCell>Last Name</CTableHeaderCell>
-                  <CTableHeaderCell>Address</CTableHeaderCell>
                   <CTableHeaderCell>Gender</CTableHeaderCell>
+                  <CTableHeaderCell>Address</CTableHeaderCell>
                   <CTableHeaderCell>Actions</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {currentData.length > 0 ? (
-                  currentData.map((patient) => (
-                    <CTableRow key={patient.id}>
-                      <CTableDataCell>{patient.id}</CTableDataCell>
-                      <CTableDataCell>{patient.firstName}</CTableDataCell>
-                      <CTableDataCell>{patient.lastName}</CTableDataCell>
+                {filteredData.length > 0 ? (
+                  filteredData.map((patient) => (
+                    <CTableRow key={patient.patient_id}>
+                      <CTableDataCell>{patient.patient_id}</CTableDataCell>
+                      <CTableDataCell>{patient.firstname}</CTableDataCell>
+                      <CTableDataCell>{patient.surname}</CTableDataCell>
+                      <CTableDataCell>{patient.gender}</CTableDataCell> 
                       <CTableDataCell>{patient.address}</CTableDataCell>
-                      <CTableDataCell>{patient.gender}</CTableDataCell>
                       <CTableDataCell>
-                        <CButton color="warning" size="sm" className="me-2">Update</CButton>
-                        <CButton color="info" size="sm" className="me-2">View More</CButton>
-                        <CButton color="danger" size="sm" onClick={() => handleDelete(patient.id)}>
-                          Delete
-                        </CButton>
+                        <CButton color="info" size="sm">View More</CButton>
+                        <CButton color="warning" size="sm" className="ms-2">Update</CButton>
+                        <CButton color="danger" size="sm" className="ms-2">Delete</CButton>
                       </CTableDataCell>
                     </CTableRow>
                   ))
@@ -97,27 +99,6 @@ const PatientList = () => {
                 )}
               </CTableBody>
             </CTable>
-
-            <div className="d-flex justify-content-between align-items-center mt-3">
-              <span>Page {currentPage} of {totalPages}</span>
-              <div>
-                <CButton
-                  color="primary"
-                  disabled={currentPage === 1}
-                  onClick={() => setCurrentPage((prev) => prev - 1)}
-                  className="me-2"
-                >
-                  Previous
-                </CButton>
-                <CButton
-                  color="primary"
-                  disabled={currentPage === totalPages}
-                  onClick={() => setCurrentPage((prev) => prev + 1)}
-                >
-                  Next
-                </CButton>
-              </div>
-            </div>
           </CCardBody>
         </CCard>
       </CCol>

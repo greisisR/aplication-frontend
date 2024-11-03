@@ -30,7 +30,6 @@ const AddTreatment = React.lazy(() => import('./views/treatment/add/add'))
 const ListTreatment = React.lazy(() => import('./views/treatment/list/list'))
 
 //User management
-const AddUsermang = React.lazy(() => import('./views/user management/add/add'))
 const ListUsermang = React.lazy(() => import('./views/user management/list/list'))
 
 //Statistics
@@ -119,7 +118,7 @@ const routes = [
 
 
 //User management
-  { path: '/user management/add', name: "User management/ Add ", element: AddUsermang},
+  
   { path: '/user management/list', name: "User management / List ", element: ListUsermang},  
 
 //Statistics
