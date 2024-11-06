@@ -35,7 +35,7 @@ const UserList = () => {
       lastName: 'Martinez',
       role: 'Patient',
     },
-    // Puedes agregar más usuarios aquí
+    // Puede agregar más usuarios aquí
   ];
 
   const [userData, setUserData] = useState(initialUserData);

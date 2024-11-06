@@ -23,7 +23,7 @@ const StaffList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('/data/db.json');
+      const response = await fetch('/data/db');
       const data = await response.json();
       setUsersData(data.user);
       setStaffData(data.staff);

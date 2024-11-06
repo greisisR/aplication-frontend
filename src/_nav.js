@@ -34,7 +34,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Add', //agregar
-        to: '/staff/add',
+        to: '/',
       },
       {
         component: CNavItem,
