@@ -99,15 +99,6 @@ const AddStaff = () => {
                   </div>
                 </CRow>
 
-                {/* Specialty */}
-                <CRow className="mb-3">
-                  <CFormLabel htmlFor="specialty" className="col-sm-2 col-form-label">
-                    Specialty
-                  </CFormLabel>
-                  <div className="col-sm-10">
-                    <CFormInput type="text" id="specialty" placeholder="Enter your specialty" />
-                  </div>
-                </CRow>
 
                 {/* Phone Number */}
                 <CRow className="mb-3">

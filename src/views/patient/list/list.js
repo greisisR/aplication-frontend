@@ -12,6 +12,7 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  
 } from '@coreui/react';
 
 const PatientList = () => {
@@ -69,7 +70,7 @@ const PatientList = () => {
                   <CTableHeaderCell>First Name</CTableHeaderCell>
                   <CTableHeaderCell>Last Name</CTableHeaderCell>
                   <CTableHeaderCell>Gender</CTableHeaderCell>
-                  <>Address</>
+                  <CTableHeaderCell>Address</CTableHeaderCell>
                   <CTableHeaderCell>Actions</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
