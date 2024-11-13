@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   CButton,
   CCard,
@@ -21,19 +21,25 @@ const UserList = () => {
       userId: '30609563',
       firstName: 'Camilo',
       lastName: 'Rodriguez',
-      role: 'Administrator',
+      role: 0, //Administrator
     },
     {
       userId: '1589042',
       firstName: 'Ana',
       lastName: 'Gomez',
-      role: 'Doctor',
+      role: 1, //Docctor
     },
     {
       userId: '16409178',
       firstName: 'Luis',
       lastName: 'Martinez',
-      role: 'Patient',
+      role: 2, //Paciente
+    },
+    {
+      userId: '19528446',
+      firstName: 'Jose',
+      lastName: 'Camacho',
+      // sin rol
     },
     // Puede agregar más usuarios aquí
   ];
@@ -90,10 +96,18 @@ const UserList = () => {
                       <CTableDataCell>{user.userId}</CTableDataCell>
                       <CTableDataCell>{user.firstName}</CTableDataCell>
                       <CTableDataCell>{user.lastName}</CTableDataCell>
-                      <CTableDataCell>{user.role}</CTableDataCell>
+                      <CTableDataCell>
+                       {user.role === 0
+                        ? 'Administrador'
+                        : user.role === 1
+                        ? 'Doctor'
+                        : user.role === 2
+                        ? 'Paciente'
+                        : 'Desconocido'}
+                      </CTableDataCell>
                       <CTableDataCell>
                         <CButton color="info" className="me-2">View More</CButton>
-                        <CButton color="warning" className="me-2">Update</CButton>
+                        <CButton color="warning" className="me-2">Modify Role</CButton>
                         <CButton color="danger">Delete</CButton>
                       </CTableDataCell>
                     </CTableRow>

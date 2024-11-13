@@ -14,27 +14,18 @@ import {
 } from '@coreui/react'
 import { DocsExample } from 'src/components'
 
-const AddStaff = () => {
+const UpdateStaff = () => {
   return (
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Add Staff</strong>
+            <strong>Update</strong>
           </CCardHeader>
           <CCardBody>
             <DocsExample href="forms/form-control">
               <CForm>
-                {/* ID Card */}
-                <CRow className="mb-3">
-                  <CFormLabel htmlFor="idCard" className="col-sm-2 col-form-label">
-                    ID Card
-                  </CFormLabel>
-                  <div className="col-sm-10">
-                    <CFormInput type="number" id="idCard" placeholder="Enter your ID card number" />
-                  </div>
-                </CRow>
-
+               
                 {/* First Name */}
                 <CRow className="mb-3">
                   <CFormLabel htmlFor="firstName" className="col-sm-2 col-form-label">
@@ -184,4 +175,4 @@ const AddStaff = () => {
   )
 }
 
-export default AddStaff
+export default UpdateStaff

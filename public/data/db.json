@@ -45,7 +45,7 @@
       "phone": "0412-1234567",
       "email": "juan.perez@example.com",
       "gender": 1,
-      "level_id": 0,
+      "level_id === 0": 0 ,
       "status_id": 1,
       "parish_id": 1 
     },
@@ -112,4 +112,5 @@
     { "status_id": 1, "create_at": "2024-08-01T00:00:00", "update_at": "NULL" },
     { "status_id": 2, "create_at": "2024-09-01T00:00:00", "update_at": "NULL" }
   ]
+  
 }

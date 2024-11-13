@@ -15,7 +15,6 @@ import {
   CTableRow,
 } from '@coreui/react';
 
-
 const StaffList = () => {
   const [staffData, setStaffData] = useState([]);
   const [usersData, setUsersData] = useState([]);
@@ -24,7 +23,7 @@ const StaffList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('/data/db');
+      const response = await fetch('/data/db.json');
       const data = await response.json();
       setUsersData(data.user);
       setStaffData(data.staff);
@@ -88,7 +87,6 @@ const StaffList = () => {
                       <CTableDataCell>{staff.specialty_name}</CTableDataCell> {/* Usamos el nombre de la especialidad */}
                       <CTableDataCell>{staff.address}</CTableDataCell>
                       <CTableDataCell>
-                        <CButton color="info" size="sm">View More</CButton>
                         <CButton color="warning" size="sm" className="ms-2">Update</CButton>
                         <CButton color="danger" size="sm" className="ms-2">Delete</CButton>
                       </CTableDataCell>

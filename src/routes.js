@@ -9,10 +9,12 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 //staff
 const AddStaff = React.lazy(() => import('./views/staff/add/add'))
 const ListStaff = React.lazy(() => import('./views/staff/list/list'))
+const UpdateStaff = React.lazy(() => import('./views/staff/update/update'))
 
 //patient
 const AddPatient = React.lazy(() => import('./views/patient/add/add'))
 const ListPatient = React.lazy(() => import('./views/patient/list/list'))
+const UpdatePatient = React.lazy(() => import('./views/patient/update/update'))
 
 //Appointment
 const AddAppointment = React.lazy(() => import('./views/appointment/add/add'))
@@ -96,11 +98,12 @@ const routes = [
   //Staff
   { path: '/staff/add', name: "staff / Add", element: AddStaff},
   { path: '/staff/list', name: "staff / List", element: ListStaff},
+  { path: '/staff/update', name: "staff / Update", element: UpdateStaff},
 
   //patient
   { path: '/patient/add', name: "Patient / Add ", element: AddPatient},
   { path: '/patient/list', name: "Patient / List", element: ListPatient},
-
+  { path: '/patient/update', name: "Patient / Update", element: UpdatePatient},
   //appointment 
   
   { path: '/appointment/add', name: "Appointment / Add", element: AddAppointment},

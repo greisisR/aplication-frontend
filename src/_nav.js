@@ -34,13 +34,14 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Add', //agregar
-        to: '/Staff/Add',
+        to: '/staff/add',
       },
       {
         component: CNavItem,
         name: 'List', //lista
         to: '/staff/list',
       },   
+     
         
     ],
   },
@@ -56,7 +57,7 @@ const _nav = [
     items: [
       {
         component: CNavItem,
-        name: 'Add', //agregar
+        name: 'Add', //agrgar
         to: '/patient/add',
       },
       {
@@ -97,8 +98,6 @@ const _nav = [
   },
 
   {
-
-
     //consultorio
     component: CNavGroup,
     name: 'Medical Office',
