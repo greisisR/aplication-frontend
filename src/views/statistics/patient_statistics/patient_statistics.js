@@ -56,9 +56,9 @@ const AppointmentStats = () => {
                     },
                     ticks: {
                       callback: function(value) {
-                        // Show patient names based on the x values
+                       
                         const patients = ['Patient Carlos', 'Patient María', 'Patient Juan', 'Patient Camilo'];
-                        return patients[value - 1]; // Adjusting for zero-index
+                        return patients[value - 1]; 
                       },
                     },
                   },

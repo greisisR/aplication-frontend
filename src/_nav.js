@@ -28,7 +28,7 @@ const _nav = [
     //Personal
     component: CNavGroup,
     name: 'Staff',
-    to: '/Staff',
+    to: '/staff',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
     items: [
       {
@@ -121,13 +121,13 @@ const _nav = [
     //gestión de usuario
     component: CNavGroup,
     name: 'User management', //gestión de usuario 
-    to: '/user management',
+    to: '/user_management',
     icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'List',
-        to: '/user management/list',
+        to: '/user_management/list',
       },   
     ],
   },
@@ -143,30 +143,30 @@ const _nav = [
     items: [
       {
         component: CNavItem,
-        name: 'Staff',
-        to: '/statistics/Staff Statistics',
+        name: 'staff',
+        to: '/statistics/staff_statistics',
       },
 
       {
         component: CNavItem,
-        name: 'Patient',
-        to: '/statistics/Patient Statistics',
+        name: 'patient',
+        to: '/statistics/patient_statistics',
       },  
 
       {
         component: CNavItem,
-        name: 'Appointment',
-        to: '/statistics/Appointment Statistics',
+        name: 'appointment',
+        to: '/statistics/appointment_statistics',
       },  
       {
         component: CNavItem,
-        name: 'Medical Office',
-        to: '/statistics/Office Statistics',
+        name: 'medical office',
+        to: '/statistics/office_statistics',
       }, 
       {
         component: CNavItem,
-        name: 'Treatment',
-        to: '/statistics/Treatment Statistics',
+        name: 'treatment',
+        to: '/statistics/treatment_statistics',
       },
       
     ],

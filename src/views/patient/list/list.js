@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import {
   CButton,
   CCard,
@@ -13,12 +14,19 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader
 } from '@coreui/react';
 
 const PatientList = () => {
   const [patientData, setPatientData] = useState([]);
   const [usersData, setUsersData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [patientToDelete, setPatientToDelete] = useState(null);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,10 +51,15 @@ const PatientList = () => {
   }).filter(item => item !== null);
 
   const filteredData = combinedData.filter(patient =>
-    `${patient.firstname} ${patient.surname} ${patient.address}`
+    `${patient.firstname} ${patient.surname} ${patient.address} ${patient.gender} ${patient.patient_id}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
+
+  const handleDelete = () => {
+    setPatientData(patientData.filter(patient => patient.patient_id !== patientToDelete));
+    setModalVisible(false);
+  };
 
   return (
     <CRow>
@@ -85,8 +98,25 @@ const PatientList = () => {
                       <CTableDataCell>{patient.address}</CTableDataCell>
                       <CTableDataCell>
                         <CButton color="info" size="sm">View More</CButton>
-                        <CButton color="warning" size="sm" className="ms-2">Update</CButton>
-                        <CButton color="danger" size="sm" className="ms-2">Delete</CButton>
+                        <CButton
+                          color="warning"
+                          size="sm"
+                          className="ms-2"
+                          onClick={() => navigate(`../update/${patient.patient_id}`)} 
+                        >
+                          Update
+                        </CButton>
+                        <CButton
+                          color="danger"
+                          size="sm"
+                          className="ms-2"
+                          onClick={() => {
+                            setPatientToDelete(patient.patient_id);
+                            setModalVisible(true);
+                          }}
+                        >
+                          Delete
+                        </CButton>
                       </CTableDataCell>
                     </CTableRow>
                   ))
@@ -102,6 +132,26 @@ const PatientList = () => {
           </CCardBody>
         </CCard>
       </CCol>
+
+      <CModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      >
+        <CModalHeader>
+          <strong>Delete Confirmation</strong>
+        </CModalHeader>
+        <CModalBody>
+          Are you sure you want to delete this patient?
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setModalVisible(false)}>
+            No
+          </CButton>
+          <CButton color="danger" onClick={handleDelete}>
+            Yes
+          </CButton>
+        </CModalFooter>
+      </CModal>
     </CRow>
   );
 };

@@ -14,6 +14,10 @@ import {
   CTableHeaderCell,
   CTableRow,
   CFormSelect,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader
 } from '@coreui/react';
 import { format, isThisWeek, isThisMonth } from 'date-fns';
 
@@ -51,14 +55,14 @@ const AppointmentList= () => {
       patientName: 'José Rodríguez',
       appointmentDate: '2024-09-25',
     },
-    
-    
   ];
 
   const [appointmentData, setAppointmentData] = useState(initialAppointmentData);
   const [searchTerm, setSearchTerm] = useState('');
   const [dateFilter, setDateFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [appointmentToDelete, setAppointmentToDelete] = useState(null);
   const itemsPerPage = 5;
 
   const todayDate = format(new Date(), 'yyyy-MM-dd'); 
@@ -68,7 +72,6 @@ const AppointmentList= () => {
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
   
-
     const appointmentDateFormatted = format(new Date(appointment.appointmentDate + 'T00:00:00'), 'yyyy-MM-dd'); 
 
     const matchesDateFilter =
@@ -77,7 +80,7 @@ const AppointmentList= () => {
         : dateFilter === 'month'
         ? isThisMonth(new Date(appointment.appointmentDate + 'T00:00:00'))
         : dateFilter === 'day'
-        ? appointmentDateFormatted === todayDate // Compara directamente con la fecha de hoy
+        ? appointmentDateFormatted === todayDate
         : true;
 
     return matchesSearchTerm && matchesDateFilter;
@@ -87,6 +90,11 @@ const AppointmentList= () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const handleDelete = () => {
+    setAppointmentData(appointmentData.filter(appointment => appointment.appointmentId !== appointmentToDelete));
+    setModalVisible(false);
+  };
 
   return (
     <CRow>
@@ -141,7 +149,14 @@ const AppointmentList= () => {
                         <CButton color="info" size="sm" className="me-2">
                           View More
                         </CButton>
-                        <CButton color="danger" size="sm">
+                        <CButton
+                          color="danger"
+                          size="sm"
+                          onClick={() => {
+                            setAppointmentToDelete(appointment.appointmentId);
+                            setModalVisible(true);
+                          }}
+                        >
                           Delete
                         </CButton>
                       </CTableDataCell>
@@ -180,6 +195,26 @@ const AppointmentList= () => {
           </CCardBody>
         </CCard>
       </CCol>
+
+      <CModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      >
+        <CModalHeader>
+          <strong>Delete Confirmation</strong>
+        </CModalHeader>
+        <CModalBody>
+          Are you sure you want to delete this appointment?
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setModalVisible(false)}>
+            No
+          </CButton>
+          <CButton color="danger" onClick={handleDelete}>
+            Yes
+          </CButton>
+        </CModalFooter>
+      </CModal>
     </CRow>
   );
 };

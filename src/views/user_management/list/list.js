@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import {
   CButton,
   CCard,
@@ -15,44 +16,26 @@ import {
   CTableRow,
 } from '@coreui/react';
 
-const UserList = () => {
-  const initialUserData = [
-    {
-      userId: '30609563',
-      firstName: 'Camilo',
-      lastName: 'Rodriguez',
-      role: 0, //Administrator
-    },
-    {
-      userId: '1589042',
-      firstName: 'Ana',
-      lastName: 'Gomez',
-      role: 1, //Docctor
-    },
-    {
-      userId: '16409178',
-      firstName: 'Luis',
-      lastName: 'Martinez',
-      role: 2, //Paciente
-    },
-    {
-      userId: '19528446',
-      firstName: 'Jose',
-      lastName: 'Camacho',
-      // sin rol
-    },
-    // Puede agregar más usuarios aquí
-  ];
-
-  const [userData, setUserData] = useState(initialUserData);
+const UserList = () => {  
+  const [userData, setUserData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
+  useEffect(() => {
+    axios.get('http://localhost:8000/user')
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
+
   // Filtrar usuarios
   const filteredData = userData.filter((user) => {
     return (
-      user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.user_id.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.role.toLowerCase().includes(searchTerm.toLowerCase())
@@ -91,17 +74,17 @@ const UserList = () => {
               </CTableHead>
               <CTableBody>
                 {currentData.length > 0 ? (
-                  currentData.map((user, index) => (
-                    <CTableRow key={index}>
-                      <CTableDataCell>{user.userId}</CTableDataCell>
-                      <CTableDataCell>{user.firstName}</CTableDataCell>
-                      <CTableDataCell>{user.lastName}</CTableDataCell>
+                  currentData.map((user) => (
+                    <CTableRow key={user.user_id}>
+                      <CTableDataCell>{user.user_id}</CTableDataCell>
+                      <CTableDataCell>{user.firstname}</CTableDataCell>
+                      <CTableDataCell>{user.surname}</CTableDataCell>
                       <CTableDataCell>
-                       {user.role === 0
+                       {user.level_id === 0
                         ? 'Administrador'
-                        : user.role === 1
+                        : user.level_id === 1
                         ? 'Doctor'
-                        : user.role === 2
+                        : user.level_id === 2
                         ? 'Paciente'
                         : 'Desconocido'}
                       </CTableDataCell>

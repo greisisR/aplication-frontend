@@ -21,9 +21,6 @@ const AddAppointment = React.lazy(() => import('./views/appointment/add/add'))
 const TotalList = React.lazy(() => import('./views/appointment/list/list'))
 const Assign = React.lazy(() => import('./views/appointment/assigntreatment/assigntreatment'))
 
-
-
-
 //Office
 const ListOffice = React.lazy(() => import('./views/office/list/list'))
 
@@ -32,14 +29,14 @@ const AddTreatment = React.lazy(() => import('./views/treatment/add/add'))
 const ListTreatment = React.lazy(() => import('./views/treatment/list/list'))
 
 //User management
-const ListUsermang = React.lazy(() => import('./views/user management/list/list'))
+const ListUsermang = React.lazy(() => import('./views/user_management/list/list'))
 
 //Statistics
-const StatisticsStaff = React.lazy(() => import('./views/statistics/Staff Statistics/Staff Statistics'))
-const StatisticsPatient = React.lazy(() => import('./views/statistics/Patient Statistics/Patient Statistics'))
-const StatisticsOffice = React.lazy(() => import('./views/statistics/Office Statistics/Office Statistics'))
-const StatisticsAppointment= React.lazy(() => import('./views/statistics/Appointment Statistics/Appointment Statistics'))
-const StatisticsTrearment = React.lazy(() => import('./views/statistics/Treatment Statistics/Treatment Statistics'))
+const StatisticsStaff = React.lazy(() => import('./views/statistics/staff_statistics/staff_statistics'))
+const StatisticsPatient = React.lazy(() => import('./views/statistics/patient_statistics/patient_statistics'))
+const StatisticsOffice = React.lazy(() => import('./views/statistics/office_statistics/office_statistics'))
+const StatisticsAppointment= React.lazy(() => import('./views/statistics/appointment_statistics/appointment_statistics'))
+const StatisticsTrearment = React.lazy(() => import('./views/statistics/treatment_statistics/treatment_statistics'))
 
 
 
@@ -122,14 +119,14 @@ const routes = [
 
 //User management
   
-  { path: '/user management/list', name: "User management / List ", element: ListUsermang},  
+  { path: '/user_management/list', name: "User Management / List ", element: ListUsermang},  
 
 //Statistics
-  { path: '/statistics/Staff Statistics', name: "Statistics / Staff Statistics", element: StatisticsStaff},
-  { path: '/statistics/Patient Statistics', name: "Statistics / Patient Statistics", element: StatisticsPatient},
-  { path: '/statistics/Office Statistics', name: "Statistics / Office Statistics ", element: StatisticsOffice},
-  { path: '/statistics/Appointment Statistics', name: "Statistics / Appointment Statistics", element: StatisticsAppointment},
-  { path: '/statistics/Treatment Statistics', name: "Statistics / Treatment Statistics ", element: StatisticsTrearment},
+  { path: '/statistics/staff_statistics', name: "Statistics / Staff Statistics", element: StatisticsStaff},
+  { path: '/statistics/patient_statistics', name: "Statistics / Patient Statistics", element: StatisticsPatient},
+  { path: '/statistics/office_statistics', name: "Statistics / Office Statistics ", element: StatisticsOffice},
+  { path: '/statistics/appointment_statistics', name: "Statistics / Appointment Statistics", element: StatisticsAppointment},
+  { path: '/statistics/treatment_statistics', name: "Statistics / Treatment Statistics ", element: StatisticsTrearment},
 
   
 

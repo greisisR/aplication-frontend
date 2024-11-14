@@ -1,39 +1,112 @@
 {
   "office": [
-    { "office_id": 1, "name": "Consultorio 1" },
-    { "office_id": 2, "name": "Consultorio 2" }
+    {
+      "office_id": 1,
+      "name": "Consultorio 1",
+      "id": "38e7"
+    },
+    {
+      "office_id": 2,
+      "name": "Consultorio 2",
+      "id": "d19f"
+    }
   ],
   "staff": [
-    { "staff_id": 30609563, "specialty_id": 1, "user_id": 30609563},
-    { "staff_id": 30609564, "specialty_id": 2, "user_id": 30609564}    
+    {
+      "staff_id": 30609563,
+      "specialty_id": 1,
+      "user_id": 30609563,
+      "id": "aec7"
+    },
+    {
+      "staff_id": 30609564,
+      "specialty_id": 2,
+      "user_id": 30609564,
+      "id": "3bd3"
+    }
   ],
   "appointment": [
-    { "appointment_id": 1, "date": "2024-10-01", "staff_id": 30609563, "office_id": 1, "patient_id": 1589042 },
-    { "appointment_id": 2, "date": "2024-10-03", "staff_id": 30609563, "office_id": 2, "patient_id": 1589042 }
+    {
+      "appointment_id": 1,
+      "date": "2024-10-01",
+      "staff_id": 30609563,
+      "office_id": 1,
+      "patient_id": 1589042,
+      "id": "a7b7"
+    },
+    {
+      "appointment_id": 2,
+      "date": "2024-10-03",
+      "staff_id": 30609563,
+      "office_id": 2,
+      "patient_id": 1589042,
+      "id": "efe8"
+    }
   ],
   "level": [
-    { "level_id": 0, "type": "ADMIN" },
-    { "level_id": 1, "type": "DOCTOR" },
-    { "level_id": 2, "type": "PATIENT" }
+    {
+      "level_id": 0,
+      "type": "ADMIN",
+      "id": "4494"
+    },
+    {
+      "level_id": 1,
+      "type": "DOCTOR",
+      "id": "cf3f"
+    },
+    {
+      "level_id": 2,
+      "type": "PATIENT",
+      "id": "2347"
+    }
   ],
-  "municipality": [ 
-    { "municipality_id": 1, "name": "Municipio San cristóbal" },
-    { "municipality_id": 2, "name": "Municipio Lobatera" }
+  "municipality": [
+    {
+      "municipality_id": 1,
+      "name": "Municipio San cristóbal",
+      "id": "7b08"
+    },
+    {
+      "municipality_id": 2,
+      "name": "Municipio Lobatera",
+      "id": "6eec"
+    }
   ],
   "specialty": [
-    { "specialty_id": 1, "name": "Pediatría" },
-    { "specialty_id": 2, "name": "Ginecología" }
+    {
+      "specialty_id": 1,
+      "name": "Pediatría",
+      "id": "8da0"
+    },
+    {
+      "specialty_id": 2,
+      "name": "Ginecología",
+      "id": "46cb"
+    }
   ],
   "patient": [
-    { "patient_id": 1589042, "user_id": 1589042}
-   
+    {
+      "patient_id": 1589042,
+      "user_id": 1589042,
+      "id": "5da6"
+    }
   ],
   "parish": [
-    { "parish_id": 1, "name": "San Juan Bautista", "municipality_id": 1 },
-    { "parish_id": 2, "name": "La molina", "municipality_id": 2 }
+    {
+      "parish_id": 1,
+      "name": "San Juan Bautista",
+      "municipality_id": 1,
+      "id": "6e2a"
+    },
+    {
+      "parish_id": 2,
+      "name": "La molina",
+      "municipality_id": 2,
+      "id": "f4a8"
+    }
   ],
   "user": [
-    { 
+    {
       "user_id": 30609563,
       "password": "password123",
       "firstname": "Juan",
@@ -45,11 +118,12 @@
       "phone": "0412-1234567",
       "email": "juan.perez@example.com",
       "gender": 1,
-      "level_id === 0": 0 ,
+      "level_id === 0": 0,
       "status_id": 1,
-      "parish_id": 1 
+      "parish_id": 1,
+      "id": "71ea"
     },
-    { 
+    {
       "user_id": 30609564,
       "password": "password123",
       "firstname": "Luis",
@@ -63,9 +137,10 @@
       "gender": 1,
       "level_id": 0,
       "status_id": 1,
-      "parish_id": 1 
+      "parish_id": 1,
+      "id": "b7a5"
     },
-    { 
+    {
       "user_id": 1589042,
       "password": "password123",
       "firstname": "Greisis",
@@ -79,7 +154,56 @@
       "gender": 0,
       "level_id": 2,
       "status_id": 2,
-      "parish_id": 2
+      "parish_id": 2,
+      "id": "b859"
+    },
+    {
+      "id": "b362",
+      "user_id": "2",
+      "firstname": "carlosssss",
+      "middlename": "",
+      "surname": "",
+      "secondsurname": "",
+      "date_birth": "",
+      "address": "",
+      "phone": "",
+      "email": "",
+      "gender": "",
+      "level_id": 2,
+      "status_id": 1,
+      "parish_id": ""
+    },
+    {
+      "id": "7ed0",
+      "user_id": "-1",
+      "firstname": "dcacac",
+      "middlename": "juan",
+      "surname": "pedro",
+      "secondsurname": "",
+      "date_birth": "",
+      "address": "",
+      "phone": "",
+      "email": "",
+      "gender": "",
+      "level_id": 2,
+      "status_id": 1,
+      "parish_id": ""
+    },
+    {
+      "id": "d1de",
+      "user_id": "89",
+      "firstname": "Juan Greisis",
+      "middlename": "Carlitos",
+      "surname": "Ramireeeez",
+      "secondsurname": "Holaaa",
+      "date_birth": "1001-10-26",
+      "address": "7632",
+      "phone": "+584247146694",
+      "email": "rosa@gmail.com",
+      "gender": "M",
+      "level_id": 2,
+      "status_id": 1,
+      "parish_id": "Parish1"
     }
   ],
   "treatment": [
@@ -89,15 +213,27 @@
       "observation": "Paciente en buen estado",
       "start_date": "2024-11-01",
       "end_date": "2024-11-01",
-      "patient_id":  1589042,
-      "staff_id": 30609563
+      "patient_id": 1589042,
+      "staff_id": 30609563,
+      "id": "f8aa"
     }
   ],
   "action": [
-    { "action_id": 0, "type": "CREATE" },
-    { "action_id": 1, "type": "UPDATE" },
-    { "action_id": 2, "type": "DELETE" }
-    
+    {
+      "action_id": 0,
+      "type": "CREATE",
+      "id": "c4d4"
+    },
+    {
+      "action_id": 1,
+      "type": "UPDATE",
+      "id": "f3b9"
+    },
+    {
+      "action_id": 2,
+      "type": "DELETE",
+      "id": "feab"
+    }
   ],
   "history_action": [
     {
@@ -105,12 +241,22 @@
       "date_time": "2024-10-01T09:00:00",
       "action_id": 0,
       "patient_id": 1589042,
-      "staff_id": 30609563
+      "staff_id": 30609563,
+      "id": "bd06"
     }
   ],
   "status": [
-    { "status_id": 1, "create_at": "2024-08-01T00:00:00", "update_at": "NULL" },
-    { "status_id": 2, "create_at": "2024-09-01T00:00:00", "update_at": "NULL" }
+    {
+      "status_id": 1,
+      "create_at": "2024-08-01T00:00:00",
+      "update_at": "NULL",
+      "id": "e4fd"
+    },
+    {
+      "status_id": 2,
+      "create_at": "2024-09-01T00:00:00",
+      "update_at": "NULL",
+      "id": "17ba"
+    }
   ]
-  
 }

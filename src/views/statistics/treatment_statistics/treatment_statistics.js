@@ -23,7 +23,7 @@ const TreatmentStats = () => {
                 datasets: [
                   {
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-                    data: [25, 40, 35, 15], // Sample data for treatments
+                    data: [25, 40, 35, 15],
                   },
                 ],
               }}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -13,6 +14,10 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader
 } from '@coreui/react';
 
 const StaffList = () => {
@@ -20,6 +25,9 @@ const StaffList = () => {
   const [usersData, setUsersData] = useState([]);
   const [specialtyData, setSpecialtyData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [staffToDelete, setStaffToDelete] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,21 +37,18 @@ const StaffList = () => {
       setStaffData(data.staff);
       setSpecialtyData(data.specialty);
     };
-
     fetchData();
   }, []);
 
-  
   const combinedData = staffData.map((staff) => {
     const user = usersData.find((user) => user.user_id === staff.user_id);
     const specialty = specialtyData.find((spec) => spec.specialty_id === staff.specialty_id);
     return user ? {
       ...user,
-      specialty_name: specialty ? specialty.name : 'Unknown', 
+      specialty_name: specialty ? specialty.name : 'Unknown',
       staff_id: staff.staff_id
     } : null;
   }).filter(item => item !== null);
-
 
   const filteredData = combinedData.filter(staff =>
     `${staff.firstname} ${staff.surname} ${staff.specialty_name} ${staff.address}`
@@ -51,13 +56,21 @@ const StaffList = () => {
       .includes(searchTerm.toLowerCase())
   );
 
+  const handleDelete = async () => {
+    try {
+      await fetch(`/data/staff/${staffToDelete}`, { method: 'DELETE' });
+      setStaffData(staffData.filter(staff => staff.staff_id !== staffToDelete));
+      setModalVisible(false);
+    } catch (error) {
+      console.error("Error deleting the staff member:", error);
+    }
+  };
+
   return (
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Staff List</strong>
-          </CCardHeader>
+          <CCardHeader><strong>Staff List</strong></CCardHeader>
           <CCardBody>
             <CFormInput
               type="text"
@@ -84,11 +97,29 @@ const StaffList = () => {
                       <CTableDataCell>{staff.staff_id}</CTableDataCell>
                       <CTableDataCell>{staff.firstname}</CTableDataCell>
                       <CTableDataCell>{staff.surname}</CTableDataCell>
-                      <CTableDataCell>{staff.specialty_name}</CTableDataCell> {/* Usamos el nombre de la especialidad */}
+                      <CTableDataCell>{staff.specialty_name}</CTableDataCell>
                       <CTableDataCell>{staff.address}</CTableDataCell>
                       <CTableDataCell>
-                        <CButton color="warning" size="sm" className="ms-2">Update</CButton>
-                        <CButton color="danger" size="sm" className="ms-2">Delete</CButton>
+                        <CButton color="info" size="sm">View More</CButton>
+                        <CButton 
+                          color="warning" 
+                          size="sm" 
+                          className="ms-2"
+                          onClick={() => navigate(`/update/${staff.staff_id}`)}
+                        >
+                          Update
+                        </CButton>
+                        <CButton
+                          color="danger"
+                          size="sm"
+                          className="ms-2"
+                          onClick={() => {
+                            setStaffToDelete(staff.staff_id);
+                            setModalVisible(true);
+                          }}
+                        >
+                          Delete
+                        </CButton>
                       </CTableDataCell>
                     </CTableRow>
                   ))
@@ -104,6 +135,15 @@ const StaffList = () => {
           </CCardBody>
         </CCard>
       </CCol>
+
+      <CModal visible={modalVisible} onClose={() => setModalVisible(false)}>
+        <CModalHeader><strong>Delete Confirmation</strong></CModalHeader>
+        <CModalBody>Are you sure you want to delete this staff member?</CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setModalVisible(false)}>No</CButton>
+          <CButton color="danger" onClick={handleDelete}>Yes</CButton>
+        </CModalFooter>
+      </CModal>
     </CRow>
   );
 };

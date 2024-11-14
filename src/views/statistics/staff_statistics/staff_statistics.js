@@ -18,7 +18,7 @@ const StaffCharts = () => {
                   {
                     label: 'Total Appointments',
                     backgroundColor: '#4BC0C0',
-                    data: [45, 30, 60, 20], // Sample data for appointments
+                    data: [45, 30, 60, 20], 
                   },
                 ],
               }}
