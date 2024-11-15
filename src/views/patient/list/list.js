@@ -28,15 +28,28 @@ const PatientList = () => {
   const [patientToDelete, setPatientToDelete] = useState(null);
   const navigate = useNavigate(); 
 
+  // Cargar datos desde localStorage al cargar el componente
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/data/db.json');
-      const data = await response.json();
-      setUsersData(data.user);
-      setPatientData(data.patient);
-    };
+    const storedPatientData = localStorage.getItem('patients');
+    const storedUsersData = localStorage.getItem('users');
+    
+    if (storedPatientData && storedUsersData) {
+      setPatientData(JSON.parse(storedPatientData));
+      setUsersData(JSON.parse(storedUsersData));
+    } else {
+      const fetchData = async () => {
+        const response = await fetch('/data/db.json');
+        const data = await response.json();
+        setUsersData(data.user);
+        setPatientData(data.patient);
 
-    fetchData();
+        // Guardar datos en localStorage para persistencia
+        localStorage.setItem('patients', JSON.stringify(data.patient));
+        localStorage.setItem('users', JSON.stringify(data.user));
+      };
+
+      fetchData();
+    }
   }, []);
 
   const combinedData = patientData.map((patient) => {
@@ -57,7 +70,12 @@ const PatientList = () => {
   );
 
   const handleDelete = () => {
-    setPatientData(patientData.filter(patient => patient.patient_id !== patientToDelete));
+    const updatedPatientData = patientData.filter(patient => patient.patient_id !== patientToDelete);
+    
+    // Actualizar el estado y localStorage
+    setPatientData(updatedPatientData);
+    localStorage.setItem('patients', JSON.stringify(updatedPatientData));
+
     setModalVisible(false);
   };
 

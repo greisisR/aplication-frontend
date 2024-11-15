@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CButton,
   CCard,
@@ -7,13 +7,13 @@ import {
   CCol,
   CFormInput,
   CRow,
+  CFormSelect,
   CTable,
   CTableBody,
   CTableDataCell,
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-  CFormSelect,
   CModal,
   CModalBody,
   CModalFooter,
@@ -21,7 +21,7 @@ import {
 } from '@coreui/react';
 import { format, isThisWeek, isThisMonth } from 'date-fns';
 
-const AppointmentList= () => {
+const AppointmentList = () => {
   const initialAppointmentData = [
     {
       appointmentId: 1,
@@ -57,7 +57,9 @@ const AppointmentList= () => {
     },
   ];
 
-  const [appointmentData, setAppointmentData] = useState(initialAppointmentData);
+  const [appointmentData, setAppointmentData] = useState(
+    JSON.parse(localStorage.getItem('appointments')) || initialAppointmentData
+  );
   const [searchTerm, setSearchTerm] = useState('');
   const [dateFilter, setDateFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,14 +67,14 @@ const AppointmentList= () => {
   const [appointmentToDelete, setAppointmentToDelete] = useState(null);
   const itemsPerPage = 5;
 
-  const todayDate = format(new Date(), 'yyyy-MM-dd'); 
+  const todayDate = format(new Date(), 'yyyy-MM-dd');
 
   const filteredData = appointmentData.filter((appointment) => {
     const matchesSearchTerm = `${appointment.doctorId} ${appointment.doctorName} ${appointment.patientId} ${appointment.patientName} ${appointment.appointmentDate}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-  
-    const appointmentDateFormatted = format(new Date(appointment.appointmentDate + 'T00:00:00'), 'yyyy-MM-dd'); 
+
+    const appointmentDateFormatted = format(new Date(appointment.appointmentDate + 'T00:00:00'), 'yyyy-MM-dd');
 
     const matchesDateFilter =
       dateFilter === 'week'
@@ -91,8 +93,14 @@ const AppointmentList= () => {
   const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  // Actualizar localStorage cada vez que los datos cambian
+  useEffect(() => {
+    localStorage.setItem('appointments', JSON.stringify(appointmentData));
+  }, [appointmentData]);
+
   const handleDelete = () => {
-    setAppointmentData(appointmentData.filter(appointment => appointment.appointmentId !== appointmentToDelete));
+    const updatedData = appointmentData.filter(appointment => appointment.appointmentId !== appointmentToDelete);
+    setAppointmentData(updatedData);
     setModalVisible(false);
   };
 

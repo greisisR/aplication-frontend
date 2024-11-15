@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import {
   CButton,
   CCard,
@@ -14,31 +13,43 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader
 } from '@coreui/react';
 
-const UserList = () => {  
+const UserList = () => {
   const [userData, setUserData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
   const itemsPerPage = 5;
 
+  // Cargar datos desde localStorage o desde la API
   useEffect(() => {
-    axios.get('http://localhost:8000/user')
-      .then((response) => {
-        setUserData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
+    const storedUserData = localStorage.getItem('users');
+    
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    } else {
+      fetch('http://localhost:8000/user')
+        .then(response => response.json())
+        .then(data => {
+          setUserData(data);
+          localStorage.setItem('users', JSON.stringify(data)); // Guardar en localStorage
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
   }, []);
 
-  // Filtrar usuarios
-  const filteredData = userData.filter((user) => {
+  const filteredData = userData.filter(user => {
     return (
-      user.user_id.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchTerm.toLowerCase())
+      user.user_id.toString().includes(searchTerm.toLowerCase()) ||
+      user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (user.level_id !== undefined && user.level_id.toString().toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -46,6 +57,16 @@ const UserList = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const handleDelete = () => {
+    const updatedUserData = userData.filter(user => user.user_id !== userToDelete);
+    setUserData(updatedUserData);
+
+    // Guardar los datos actualizados en localStorage
+    localStorage.setItem('users', JSON.stringify(updatedUserData));
+
+    setModalVisible(false);
+  };
 
   return (
     <CRow>
@@ -74,24 +95,27 @@ const UserList = () => {
               </CTableHead>
               <CTableBody>
                 {currentData.length > 0 ? (
-                  currentData.map((user) => (
-                    <CTableRow key={user.user_id}>
+                  currentData.map((user, index) => (
+                    <CTableRow key={index}>
                       <CTableDataCell>{user.user_id}</CTableDataCell>
                       <CTableDataCell>{user.firstname}</CTableDataCell>
                       <CTableDataCell>{user.surname}</CTableDataCell>
                       <CTableDataCell>
-                       {user.level_id === 0
-                        ? 'Administrador'
-                        : user.level_id === 1
-                        ? 'Doctor'
-                        : user.level_id === 2
-                        ? 'Paciente'
-                        : 'Desconocido'}
+                        {user.level_id === 0 ? 'Admin' : user.level_id === 1 ? 'Doctor' : user.level_id === 2 ? 'Patient' : 'Unknown'}
                       </CTableDataCell>
+
                       <CTableDataCell>
                         <CButton color="info" className="me-2">View More</CButton>
                         <CButton color="warning" className="me-2">Modify Role</CButton>
-                        <CButton color="danger">Delete</CButton>
+                        <CButton
+                          color="danger"
+                          onClick={() => {
+                            setUserToDelete(user.user_id);
+                            setModalVisible(true);
+                          }}
+                        >
+                          Delete
+                        </CButton>
                       </CTableDataCell>
                     </CTableRow>
                   ))
@@ -128,6 +152,26 @@ const UserList = () => {
           </CCardBody>
         </CCard>
       </CCol>
+
+      <CModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      >
+        <CModalHeader>
+          <strong>Delete Confirmation</strong>
+        </CModalHeader>
+        <CModalBody>
+          Are you sure you want to delete this user?
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setModalVisible(false)}>
+            No
+          </CButton>
+          <CButton color="danger" onClick={handleDelete}>
+            Yes
+          </CButton>
+        </CModalFooter>
+      </CModal>
     </CRow>
   );
 };

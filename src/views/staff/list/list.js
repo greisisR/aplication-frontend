@@ -29,15 +29,31 @@ const StaffList = () => {
   const [staffToDelete, setStaffToDelete] = useState(null);
   const navigate = useNavigate();
 
+  // Cargar datos desde localStorage al cargar el componente
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/data/db.json');
-      const data = await response.json();
-      setUsersData(data.user);
-      setStaffData(data.staff);
-      setSpecialtyData(data.specialty);
-    };
-    fetchData();
+    const storedStaffData = localStorage.getItem('staff');
+    const storedUsersData = localStorage.getItem('users');
+    const storedSpecialtyData = localStorage.getItem('specialties');
+
+    if (storedStaffData && storedUsersData && storedSpecialtyData) {
+      setStaffData(JSON.parse(storedStaffData));
+      setUsersData(JSON.parse(storedUsersData));
+      setSpecialtyData(JSON.parse(storedSpecialtyData));
+    } else {
+      const fetchData = async () => {
+        const response = await fetch('/data/db.json');
+        const data = await response.json();
+        setUsersData(data.user);
+        setStaffData(data.staff);
+        setSpecialtyData(data.specialty);
+
+        // Guardar datos en localStorage para persistencia
+        localStorage.setItem('staff', JSON.stringify(data.staff));
+        localStorage.setItem('users', JSON.stringify(data.user));
+        localStorage.setItem('specialties', JSON.stringify(data.specialty));
+      };
+      fetchData();
+    }
   }, []);
 
   const combinedData = staffData.map((staff) => {
@@ -58,8 +74,12 @@ const StaffList = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`/data/staff/${staffToDelete}`, { method: 'DELETE' });
-      setStaffData(staffData.filter(staff => staff.staff_id !== staffToDelete));
+      // Eliminamos el miembro del personal localmente
+      const updatedStaffData = staffData.filter(staff => staff.staff_id !== staffToDelete);
+      setStaffData(updatedStaffData);
+      
+      // Guardamos los datos actualizados en localStorage
+      localStorage.setItem('staff', JSON.stringify(updatedStaffData));
       setModalVisible(false);
     } catch (error) {
       console.error("Error deleting the staff member:", error);
