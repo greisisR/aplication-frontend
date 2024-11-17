@@ -64,7 +64,7 @@ const AppointmentList = () => {
   const [dateFilter, setDateFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [modalVisible, setModalVisible] = useState(false);
-  const [appointmentToDelete, setAppointmentToDelete] = useState(null);
+  const [appointmentToEdit, setAppointmentToEdit] = useState(null);  
   const itemsPerPage = 5;
 
   const todayDate = format(new Date(), 'yyyy-MM-dd');
@@ -93,14 +93,25 @@ const AppointmentList = () => {
   const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  // Actualizar localStorage cada vez que los datos cambian
-  useEffect(() => {
-    localStorage.setItem('appointments', JSON.stringify(appointmentData));
-  }, [appointmentData]);
+  const handleEdit = (appointment) => {
+    setAppointmentToEdit(appointment);
+    setModalVisible(true); 
+  };
+
+  const handleSave = () => {
+    
+    setAppointmentData((prevData) =>
+      prevData.map((appointment) =>
+        appointment.appointmentId === appointmentToEdit.appointmentId ? appointmentToEdit : appointment
+      )
+    );
+    setModalVisible(false); 
+  };
 
   const handleDelete = () => {
-    const updatedData = appointmentData.filter(appointment => appointment.appointmentId !== appointmentToDelete);
-    setAppointmentData(updatedData);
+    setAppointmentData((prevData) =>
+      prevData.filter((appointment) => appointment.appointmentId !== appointmentToDelete)
+    );
     setModalVisible(false);
   };
 
@@ -151,11 +162,16 @@ const AppointmentList = () => {
                       <CTableDataCell>{appointment.patientName}</CTableDataCell>
                       <CTableDataCell>{format(new Date(appointment.appointmentDate + 'T00:00:00'), 'yyyy-MM-dd')}</CTableDataCell>
                       <CTableDataCell>
-                        <CButton color="warning" size="sm" className="me-2">
-                          Update
-                        </CButton>
                         <CButton color="info" size="sm" className="me-2">
                           View More
+                        </CButton>
+                        <CButton
+                          color="warning"
+                          size="sm"
+                          className="me-2"
+                          onClick={() => handleEdit(appointment)} 
+                        >
+                          Update
                         </CButton>
                         <CButton
                           color="danger"
@@ -209,18 +225,48 @@ const AppointmentList = () => {
         onClose={() => setModalVisible(false)}
       >
         <CModalHeader>
-          <strong>Delete Confirmation</strong>
+          <strong>{appointmentToEdit ? 'Edit Appointment' : 'Delete Confirmation'}</strong>
         </CModalHeader>
         <CModalBody>
-          Are you sure you want to delete this appointment?
+          {appointmentToEdit ? (
+            <div>
+              <CFormInput
+                label="Doctor Name"
+                value={appointmentToEdit.doctorName}
+                onChange={(e) => setAppointmentToEdit({ ...appointmentToEdit, doctorName: e.target.value })}
+                className="mb-3"
+              />
+              <CFormInput
+                label="Patient Name"
+                value={appointmentToEdit.patientName}
+                onChange={(e) => setAppointmentToEdit({ ...appointmentToEdit, patientName: e.target.value })}
+                className="mb-3"
+              />
+              <CFormInput
+                label="Appointment Date"
+                type="date"
+                value={appointmentToEdit.appointmentDate}
+                onChange={(e) => setAppointmentToEdit({ ...appointmentToEdit, appointmentDate: e.target.value })}
+                className="mb-3"
+              />
+            </div>
+          ) : (
+            <p>Are you sure you want to delete this appointment?</p>
+          )}
         </CModalBody>
         <CModalFooter>
           <CButton color="secondary" onClick={() => setModalVisible(false)}>
             No
           </CButton>
-          <CButton color="danger" onClick={handleDelete}>
-            Yes
-          </CButton>
+          {appointmentToEdit ? (
+            <CButton color="primary" onClick={handleSave}>
+              Save
+            </CButton>
+          ) : (
+            <CButton color="danger" onClick={handleDelete}>
+              Yes
+            </CButton>
+          )}
         </CModalFooter>
       </CModal>
     </CRow>

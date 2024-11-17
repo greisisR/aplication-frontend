@@ -14,14 +14,21 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CForm,
+  CFormLabel,
 } from '@coreui/react';
 
 const OfficeList = () => {
   const [officeData, setOfficeData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [updateModalVisible, setUpdateModalVisible] = useState(false);
+  const [currentOffice, setCurrentOffice] = useState(null);
   const itemsPerPage = 5;
-
 
   useEffect(() => {
     axios.get('http://localhost:8000/office')
@@ -33,7 +40,6 @@ const OfficeList = () => {
       });
   }, []);
 
-  
   const filteredData = officeData.filter((office) =>
     office.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -43,8 +49,19 @@ const OfficeList = () => {
   const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  const handleUpdate = (id) => {
-    console.log(`Update office with ID ${id}`);
+  const handleUpdate = (office) => {
+    setCurrentOffice(office);
+    setUpdateModalVisible(true);
+  };
+
+  const handleUpdateChange = (field, value) => {
+    setCurrentOffice({ ...currentOffice, [field]: value });
+  };
+
+  const handleSave = () => {
+    console.log('Updated office:', currentOffice);
+    setUpdateModalVisible(false);
+    
   };
 
   return (
@@ -80,7 +97,7 @@ const OfficeList = () => {
                         <CButton
                           color="warning"
                           size="sm"
-                          onClick={() => handleUpdate(office.office_id)}
+                          onClick={() => handleUpdate(office)}
                         >
                           Update
                         </CButton>
@@ -120,6 +137,38 @@ const OfficeList = () => {
           </CCardBody>
         </CCard>
       </CCol>
+
+      {/* Modal for updating office */}
+      <CModal
+        visible={updateModalVisible}
+        onClose={() => setUpdateModalVisible(false)}
+      >
+        <CModalHeader>
+          <strong>Update Office</strong>
+        </CModalHeader>
+        <CModalBody>
+          {currentOffice && (
+            <CForm>
+              <div className="mb-3">
+                <CFormLabel>Office Name</CFormLabel>
+                <CFormInput
+                  value={currentOffice.name || ''}
+                  onChange={(e) => handleUpdateChange('name', e.target.value)}
+                />
+              </div>
+             
+            </CForm>
+          )}
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => setUpdateModalVisible(false)}>
+            Cancel
+          </CButton>
+          <CButton color="primary" onClick={handleSave}>
+            Save
+          </CButton>
+        </CModalFooter>
+      </CModal>
     </CRow>
   );
 };

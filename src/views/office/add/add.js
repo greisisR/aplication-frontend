@@ -25,7 +25,7 @@ const AddOffice = () => {
           <CCardBody>
             <DocsExample href="forms/form-control">
               <CForm>
-                {/* ID Card Staff */}
+                
                 <CRow className="mb-3">
                   <CFormLabel htmlFor="idCard" className="col-sm-2 col-form-label">
                     ID Number
@@ -35,7 +35,6 @@ const AddOffice = () => {
                   </div>
                 </CRow>
 
-                {/* Office name */}
                  <CRow className="mb-3">
                   <CFormLabel htmlFor="idCard" className="col-sm-2 col-form-label">
                      Office name
@@ -45,7 +44,6 @@ const AddOffice = () => {
                   </div>
                 </CRow>
 
-               {/* Submit Button */}
                 <CRow className="mb-3">
                   <div className="col-sm-10 offset-sm-2">
                     <CButton color="primary" type="submit">Submit</CButton>

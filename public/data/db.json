@@ -20,9 +20,31 @@
     },
     {
       "staff_id": 30609564,
-      "specialty_id": 2,
+      "specialty_id": 3,
       "user_id": 30609564,
       "id": "3bd3"
+    },
+    {
+      "id": "30163757",
+      "staff_id": "30163757",
+      "specialty_id": 2,
+      "user_id": "30163757"
+    },
+    {
+      "id": "b0f4",
+      "staff_id": "5685281",
+      "specialty_id": 4,
+      "user_id": "5685281"
+    },
+    {
+      "id": "0572",
+      "staff_id": "4667552",
+      "user_id": "4667552"
+    },
+    {
+      "id": "56e4",
+      "staff_id": "7865334",
+      "user_id": "7865334"
     }
   ],
   "appointment": [
@@ -41,6 +63,13 @@
       "office_id": 2,
       "patient_id": 1589042,
       "id": "efe8"
+    },
+    {
+      "id": "23e3",
+      "patient_id": "30163757",
+      "office_id": "2",
+      "date": "2003-10-26",
+      "staff_id": 30609563
     }
   ],
   "level": [
@@ -75,13 +104,57 @@
   "specialty": [
     {
       "specialty_id": 1,
-      "name": "Pediatría",
-      "id": "8da0"
+      "name": "Medicina Física y Rehabilitación",
+      "id": "b80d"
     },
     {
       "specialty_id": 2,
-      "name": "Ginecología",
-      "id": "46cb"
+      "name": "Neurología",
+      "id": "7942"
+    },
+    {
+      "specialty_id": 3,
+      "name": "Reumatología",
+      "id": "3fc9"
+    },
+    {
+      "specialty_id": 4,
+      "name": "Traumatología y Ortopedia",
+      "id": "95d4"
+    },
+    {
+      "specialty_id": 5,
+      "name": "Cardiología",
+      "id": "4d54"
+    },
+    {
+      "specialty_id": 6,
+      "name": "Pediatría",
+      "id": "0622"
+    },
+    {
+      "specialty_id": 7,
+      "name": "Psicología Clínica",
+      "id": "527c"
+    },
+    {
+      "specialty_id": 8,
+      "name": "Geriatría",
+      "id": "4c8e"
+    },
+    {
+      "specialty_id": 9,
+      "name": "Terapias del Dolor",
+      "id": "f49c"
+    },
+    {
+      "specialty_id": 10,
+      "name": "Medicina Deportiva",
+      "id": "0712"
+    },
+    {
+      "id": "19e2",
+      "name": ""
     }
   ],
   "patient": [
@@ -89,6 +162,16 @@
       "patient_id": 1589042,
       "user_id": 1589042,
       "id": "5da6"
+    },
+    {
+      "id": "7fdd",
+      "patient_id": "29699505",
+      "user_id": "29699505"
+    },
+    {
+      "id": "1b21",
+      "patient_id": "6371159",
+      "user_id": "6371159"
     }
   ],
   "parish": [
@@ -135,14 +218,14 @@
       "phone": "0412-1234567",
       "email": "juan.perez@example.com",
       "gender": 1,
-      "level_id": 0,
+      "level_id": 1,
       "status_id": 1,
       "parish_id": 1,
       "id": "b7a5"
     },
     {
-      "user_id": 1589042,
-      "password": "password123",
+      "user_id": 30201598,
+      "password": "123",
       "firstname": "Greisis",
       "middlename": "Juslenis",
       "surname": "Rámirez",
@@ -152,58 +235,113 @@
       "phone": "0412-1234567",
       "email": "gjuslenis@example.com",
       "gender": 0,
-      "level_id": 2,
+      "level_id": 1,
       "status_id": 2,
       "parish_id": 2,
       "id": "b859"
     },
     {
-      "id": "b362",
-      "user_id": "2",
-      "firstname": "carlosssss",
+      "id": "7a28",
+      "user_id": "30163757",
+      "firstname": "Jesús",
       "middlename": "",
-      "surname": "",
+      "surname": "Pérez",
       "secondsurname": "",
-      "date_birth": "",
-      "address": "",
-      "phone": "",
-      "email": "",
-      "gender": "",
-      "level_id": 2,
-      "status_id": 1,
-      "parish_id": ""
-    },
-    {
-      "id": "7ed0",
-      "user_id": "-1",
-      "firstname": "dcacac",
-      "middlename": "juan",
-      "surname": "pedro",
-      "secondsurname": "",
-      "date_birth": "",
-      "address": "",
-      "phone": "",
-      "email": "",
-      "gender": "",
-      "level_id": 2,
-      "status_id": 1,
-      "parish_id": ""
-    },
-    {
-      "id": "d1de",
-      "user_id": "89",
-      "firstname": "Juan Greisis",
-      "middlename": "Carlitos",
-      "surname": "Ramireeeez",
-      "secondsurname": "Holaaa",
-      "date_birth": "1001-10-26",
-      "address": "7632",
+      "date_birth": "2003-10-26",
+      "address": "Ferrero Tamayo",
       "phone": "+584247146694",
-      "email": "rosa@gmail.com",
-      "gender": "M",
+      "email": "",
+      "gender": 1,
       "level_id": 2,
       "status_id": 1,
-      "parish_id": "Parish1"
+      "parish_id": "1"
+    },
+    {
+      "id": "92f4",
+      "user_id": "29699505",
+      "firstname": "Jose",
+      "middlename": "david",
+      "surname": "suarez",
+      "secondsurname": "contreras",
+      "date_birth": "2003-01-26",
+      "address": "Ferrero Tamayo",
+      "phone": "+584247146694",
+      "email": "darianaylc@gmail.com",
+      "gender": "1",
+      "level_id": 2,
+      "status_id": 1,
+      "parish_id": "2"
+    },
+    {
+      "id": "60d6",
+      "user_id": 30201598,
+      "email": "gjuslenis@gmail.com",
+      "password": "1234",
+      "level_id": 0
+    },
+    {
+      "id": "6470",
+      "user_id": "5685281",
+      "firstname": "Leonor",
+      "middlename": "Leonor",
+      "surname": "Rueda",
+      "secondsurname": "Quintero",
+      "date_birth": "19961-08-26",
+      "address": "Calle 2",
+      "phone": "04247140991",
+      "email": "Leogreyrueda@gmail.com",
+      "gender": "0",
+      "level_id": 1,
+      "status_id": 1,
+      "parish_id": "1"
+    },
+    {
+      "id": "6d94",
+      "user_id": "6371159",
+      "firstname": "Julio",
+      "middlename": "Cesar",
+      "surname": "Ramirez",
+      "secondsurname": "Ramirez",
+      "date_birth": "1958-09-03",
+      "address": "Calle 3",
+      "phone": "04247140991",
+      "email": "julioramirez@gmail.com",
+      "gender": "1",
+      "level_id": 2,
+      "status_id": 1,
+      "parish_id": "2"
+    },
+    {
+      "id": "0c5e",
+      "user_id": "4667552",
+      "firstname": "Julio",
+      "middlename": "Jose",
+      "surname": "Molina",
+      "secondsurname": "Ramirez",
+      "date_birth": "",
+      "address": "",
+      "phone": "",
+      "email": "julioramirez03@gmail.com",
+      "gender": "1",
+      "level_id": 1,
+      "status_id": 1,
+      "parish_id": ""
+    },
+    {
+      "id": "f54a",
+      "user_id": "7865334",
+      "firstname": "Luis",
+      "middlename": "Jose",
+      "surname": "Rodriguex ",
+      "secondsurname": "Quintero",
+      "date_birth": "",
+      "address": "calle 8",
+      "phone": "",
+      "email": "",
+      "gender": "1",
+      "level_id": 1,
+      "status_id": 1,
+      "parish_id": "1"
     }
   ],
   "treatment": [
